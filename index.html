@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>To Do List Using JS</title>
+</head>
+
+<body class="h-[100vh] flex justify-center items-center">
+
+    <div class="w-[95%] flex flex-col gap-4 p-4 shadow-lg rounded-[1px] bg-[#fff] md:w-[50%]">
+
+        <!-- Add Task Div -->
+        <div class="flex items-center gap-2 p-2 border-[2px] border-[black] rounded-[1px] duration-300 md:py-1">
+            <i class="fa fa-tasks text-[black]"></i>
+            <input type="text" placeholder="Add Task" class="flex-1 tracking-wider bg-[transparent] focus:outline-none"
+                id="taskName" onkeyup="getTaskName(this.value)">
+        </div>
+
+        <!-- Time Div -->
+        <div class="w-[100%] flex px-1 border-[2px] border-[black] transition duration-300">
+            <div class="w-full flex items-center gap-2">
+                <div class="flex items-center gap-1">
+                    <i class="fa fa-clock-o text-lg tracking-wider text-[black]"></i>
+                    <p class="text-sm">Hours</p>
+                </div>
+                <select onchange="changeHours(this.value)" id="hrs"
+                    class="flex-1 py-[1px] text-sm rounded-[2px] bg-[transparent] transition duration-300 cursor-pointer focus:outline-none hover:bg-[black] hover:text-[#fff]">
+                    <option>12</option>
+                    <option>11</option>
+                    <option>10</option>
+                    <option>09</option>
+                    <option>08</option>
+                    <option>07</option>
+                    <option>06</option>
+                    <option>05</option>
+                    <option>04</option>
+                    <option>03</option>
+                    <option>02</option>
+                    <option>01</option>
+                </select>
+                <select onchange="changeMins(this.value)" id="mins"
+                    class="flex-1 py-[1px] text-sm rounded-[2px] bg-[transparent] transition duration-300 cursor-pointer focus:outline-none hover:bg-[black] hover:text-[#fff]">
+                    <option>00</option>
+                    <option>05</option>
+                    <option>10</option>
+                    <option>15</option>
+                    <option>20</option>
+                    <option>25</option>
+                    <option>30</option>
+                    <option>35</option>
+                    <option>40</option>
+                    <option>45</option>
+                    <option>50</option>
+                    <option>55</option>
+                </select>
+                <select id="ap" onchange="changeap(this.value)"
+                    class="flex-1 py-[1px] text-sm rounded-[2px] bg-[transparent] transition duration-300 cursor-pointer focus:outline-none hover:bg-[black] hover:text-[#fff]">
+                    <option>AM</option>
+                    <option>PM</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Date and Status Div -->
+        <div class="w-full flex flex-col items-stretch gap-4 md:flex-row md:justify-between md:gap-4">
+            <div class="flex-1 flex pl-1 border-[2px] border-[black] rounded-[1px] md:px-2">
+                <input type="date" id="taskDate" onchange="changeTaskDate(this.value)"
+                    class="flex-1 focus:outline-none">
+            </div>
+
+            <div class="flex-1 flex py-1 border-[2px] border-[black] rounded-[1px] md:py-0">
+                <select id="status" onchange="changeStatus(this.value)"
+                    class="bg-[transparent] flex-1 cursor-pointer focus:outline-none md:pr-4">
+                    <option>Pending</option>
+                    <option>Completed</option>
+                </select>
+            </div>
+            <button onclick="addTask()"
+                class="flex-1 bg-[black] text-white rounded-[1px] tracking-wider py-1 px-4 md:py-0">Add
+                Task</button>
+        </div>
+
+        <!-- Tabs Div -->
+        <div class="flex flex-col gap-2 py-2">
+            <ul id="tabsUl" class="flex justify-evenly gap-2">
+                <li onclick="changeTab(0, 'All')"
+                    class="w-full text-center border-b-2 border-b-[black] hover:border-b-2 cursor-pointer hover:border-b-[black]">
+                    All
+                </li>
+                <li onclick="changeTab(1, 'Pending')"
+                    class="w-full transition duration-300 text-center hover:border-b-2 cursor-pointer hover:border-b-[black]">
+                    Pending
+                </li>
+                <li onclick="changeTab(2, 'Completed')"
+                    class="w-full transition duration-300 text-center hover:border-b-2 cursor-pointer hover:border-b-[black]">
+                    Completed
+                </li>
+            </ul>
+
+            <!-- Task List Div -->
+            <div>
+                <ul id="taskList" class="flex flex-col gap-2">
+
+                </ul>
+                <p id="emptyTask" class="text-center text-[gray] font-bold my-4">No Task to Show...</p>
+            </div>
+
+        </div>
+    </div>
+    <script src="todolist.js"></script>
+</body>
+
+</html>
